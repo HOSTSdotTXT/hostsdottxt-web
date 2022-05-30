@@ -59,7 +59,7 @@ export function SignUp() {
         <StyledLabel for="passwordConfirm">Password (Confirm)</StyledLabel>
         <Input id="passwordConfirm" type="password"></Input>
         <AlignRight>
-        <Button secondary>Cancel</Button>
+        { /* <Button secondary>Cancel</Button> */ }
         <Button primary>Sign Up {'\u2794'}</Button>
         </AlignRight>
       </LoginCard>
