@@ -21,9 +21,15 @@ const Title = styled("h1", {
   textAlign: "center",
   fontSize: "6em",
   margin: "1rem 0",
-  fontWeight: 400
+  fontWeight: 300,
 });
 
+const Subtitle = styled("h1", {
+  textAlign: "center",
+  fontSize: "2.5em",
+  margin: "1rem 0",
+  fontWeight: 300
+});
 
 const StyledLabel = styled("label", {
   display: "block",
@@ -43,6 +49,7 @@ export function SignUp() {
     <Flex>
       <LoginCard>
         <Title>FDNS</Title>
+        <Subtitle>Sign Up</Subtitle>
         <StyledLabel for="email">Email</StyledLabel>
         <Input id="email" type="email"></Input>
         <StyledLabel for="displayName">Display Name</StyledLabel>
@@ -52,7 +59,8 @@ export function SignUp() {
         <StyledLabel for="passwordConfirm">Password (Confirm)</StyledLabel>
         <Input id="passwordConfirm" type="password"></Input>
         <AlignRight>
-        <Button style={{borderRadius: "0", backgroundColor: "inherit", padding: "0.5rem", border: "inherit", cursor: "pointer", fontSize: "0.9rem", fontWeight: 500}}>Sign Up -&gt;</Button>
+        <Button secondary>Cancel</Button>
+        <Button primary>Sign Up {'\u2794'}</Button>
         </AlignRight>
       </LoginCard>
     </Flex>
