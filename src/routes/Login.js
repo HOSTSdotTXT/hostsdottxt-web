@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import React from "react";
 import {
   Routes,
@@ -12,6 +12,7 @@ import {
 import Button from "../uikit/Button.js";
 import Input from "../uikit/Input.js";
 import { useAuth } from "../hooks/useAuth";
+import { useFeatures } from "../hooks/useFeatures";
 import { isExpired } from "react-jwt";
 import { styled } from "@stitches/react";
 import { debounce } from "lodash";
@@ -62,6 +63,7 @@ function Login(props) {
   let auth = useAuth();
   let navigate = useNavigate();
   let location = useLocation();
+  let features = useFeatures();
   const [totpRequired, setTotpRequired] = useState(false);
 
   let from = location.state?.from?.pathname || "/";
