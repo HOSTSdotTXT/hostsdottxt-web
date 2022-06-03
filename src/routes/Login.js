@@ -98,6 +98,9 @@ function Login(props) {
   };
 
   const checkTotpRequired = debounce((e) => {
+    if (!features.totp) {
+      return;
+    }
     fetch("/api/v1/users/totp?email=" + e.target.value).then((res) => {
       if (res.status === 200) {
         res.json().then((data) => {
@@ -124,8 +127,10 @@ function Login(props) {
         <Input id="email" type="email" onChange={checkTotpRequired}></Input>
         <StyledLabel for="password">Password</StyledLabel>
         <Input id="password" type="password" onKeyUp={onKeyPress}></Input>
-        <StyledLabel for="totp">TOTP Code</StyledLabel>
-        <Input id="totp" disabled={!totpRequired} placeholder={totpRequired?"":"Not Required"}></Input>
+        {features.totp && <>
+          <StyledLabel for="totp">TOTP Code</StyledLabel>
+          <Input id="totp" disabled={!totpRequired} placeholder={totpRequired ? "" : "Not Required"}></Input>
+        </>}
         <AlignRight>
           {/* <Button secondary>Cancel</Button> */}
           <Button onClick={handleSubmit} primary>
