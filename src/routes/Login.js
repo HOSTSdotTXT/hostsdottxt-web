@@ -35,7 +35,7 @@ const LoginCard = styled("div", {
 
 const Title = styled("h1", {
   textAlign: "center",
-  fontSize: "6em",
+  fontSize: "5em",
   margin: "1rem 0",
   fontWeight: 300,
 });
@@ -109,7 +109,7 @@ function Login(props) {
         });
       }
     });
-  }, 500);
+  }, 200);
 
   function onKeyPress(e) {
     if (e.key == "Enter") {
