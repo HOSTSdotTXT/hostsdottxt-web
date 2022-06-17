@@ -7,6 +7,7 @@ import Login from './routes/Login';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './hooks/useAuth';
 import { FeaturesProvider } from './hooks/useFeatures';
+import Records from './routes/Records';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -19,6 +20,7 @@ root.render(
             { /* <Route path="/" element={<Home />} /> */}
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
+            <Route path="records" element={<Records />} />
           </Routes>
         </BrowserRouter>
       </FeaturesProvider>
