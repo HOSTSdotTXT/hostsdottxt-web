@@ -3,7 +3,7 @@ import IconButton from "./IconButton.js";
 
 export default class Record extends React.Component {
   render() {
-    console.log(this)
+    // console.log(this)
     return (
       <div class="records-tr" role="row">
         <div class="records-td records-col-type">{this.props.type}</div>

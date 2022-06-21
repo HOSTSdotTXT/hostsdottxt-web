@@ -20,7 +20,7 @@ root.render(
             { /* <Route path="/" element={<Home />} /> */}
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="records" element={<Records />} />
+            <Route path="records/:zoneName" element={<Records />} />
           </Routes>
         </BrowserRouter>
       </FeaturesProvider>
