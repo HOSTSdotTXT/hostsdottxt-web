@@ -5,20 +5,21 @@ import Record from "./Record";
 const sortColumns = Object.freeze({
   TYPE: "type",
   NAME: "name",
-  VALUE: "value"
+  VALUE: "value",
 });
 
 const sortDirections = Object.freeze({
   UP: "up",
-  DOWN: "down"
-})
+  DOWN: "down",
+});
 
 function sort(records, direction, smart, column) {
-  let sortVal = records.map(record => [record, record[column]]);
+  let sortVal = records.map((record) => [record, record[column]]);
   if (smart && column === sortColumns.NAME) {
-    sortVal = records.map(record => 
-      [record, record.name.split(".").reverse().join(".")]
-    )
+    sortVal = records.map((record) => [
+      record,
+      record.name.split(".").reverse().join("."),
+    ]);
   }
   sortVal = sortVal.sort((a, b) => {
     if (a[1] > b[1]) {
@@ -28,20 +29,27 @@ function sort(records, direction, smart, column) {
       return -1;
     }
     return 0;
-  })
+  });
   if (direction === sortDirections.DOWN) {
-    sortVal = sortVal.reverse()
+    sortVal = sortVal.reverse();
   }
-  return sortVal.map(record => record[0])
+  return sortVal.map((record) => record[0]);
 }
 
-export default function RecordsTable({ records }) {
+export default function RecordsTable({
+  records,
+  setAndOpenRecord,
+  deleteRecord,
+}) {
   return (
     // checkbox here that toggles smart sorting
     <div role="table" class="table">
       <div class="records-thead" role="rowgroup">
         <div class="records-tr" role="row">
-          <div class="records-th records-col-type">Type {/* We need to put a button here which switches sorting direction and column*/}</div>
+          <div class="records-th records-col-type">
+            Type{" "}
+            {/* We need to put a button here which switches sorting direction and column*/}
+          </div>
           <div class="records-th records-col-name">Name</div>
           <div class="records-th records-col-value">Value</div>
           <div class="records-th records-col-ttl">TTL</div>
@@ -49,13 +57,22 @@ export default function RecordsTable({ records }) {
         </div>
       </div>
       <div class="records-tbody" role="rowgroup">
-        {records != null && 
-          sort(records, sortDirections.UP, true, sortColumns.NAME).map((val) => {
-            return (
-              <Record id={val.id} type={val.type} name={val.name} value={val.content} ttl={val.ttl}></Record>
-            )
-          })
-        }
+        {records != null &&
+          sort(records, sortDirections.UP, true, sortColumns.TYPE).map(
+            (val) => {
+              return (
+                <Record
+                  id={val.id}
+                  type={val.type}
+                  name={val.name}
+                  value={val.content}
+                  ttl={val.ttl}
+                  setAndOpenRecord={() => setAndOpenRecord(val)}
+                  deleteRecord={() => deleteRecord(val.id)}
+                ></Record>
+              );
+            }
+          )}
       </div>
     </div>
   );

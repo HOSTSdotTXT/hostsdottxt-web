@@ -1,6 +1,5 @@
-
-import './App.css';
-import RecordTable from './components/RecordTable';
+import "./App.css";
+import RecordTable from "./components/RecordTable";
 
 function App() {
   return (

@@ -1,11 +1,11 @@
 import { styled } from "@stitches/react";
 
-function IconButton() {
+export default function IconButton({ icon, action }) {
   const UnstyledButton = styled("button", {
     "background-color": "initial",
     border: "none",
     "padding-top": "3px",
   });
 
-  return <UnstyledButton></UnstyledButton>;
+  return <UnstyledButton onClick={() => action()}>{icon}</UnstyledButton>;
 }

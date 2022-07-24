@@ -1,6 +1,6 @@
 import { styled } from "@stitches/react";
 import Button from "../uikit/Button.js";
-import Input from "../uikit/Input.js"
+import Input from "../uikit/Input.js";
 import { debounce } from "lodash";
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth.js";
@@ -24,7 +24,8 @@ const LoginCard = styled("div", {
 
 const Title = styled("h1", {
   textAlign: "center",
-  fontSize: "5em",
+  fontSize: "3em",
+  fontWeight: "500",
   margin: "1rem 0",
   fontWeight: 300,
 });
@@ -33,7 +34,7 @@ const Subtitle = styled("h1", {
   textAlign: "center",
   fontSize: "2.5em",
   margin: "1rem 0",
-  fontWeight: 300
+  fontWeight: 300,
 });
 
 const StyledLabel = styled("label", {
@@ -42,12 +43,11 @@ const StyledLabel = styled("label", {
   fontSize: "0.9em",
 });
 
-
 const AlignRight = styled("div", {
-  "display": "flex",
-  "alignItems": "right",
-  "justifyContent": "right"
-})
+  display: "flex",
+  alignItems: "right",
+  justifyContent: "right",
+});
 
 export function SignUp() {
   const [passwordsMatch, setPasswordsMatch] = useState(true);
@@ -79,7 +79,7 @@ export function SignUp() {
       return;
     }
 
-    const re = /.{1,64}@.{1,64}\..{1,64}/i
+    const re = /.{1,64}@.{1,64}\..{1,64}/i;
     if (!re.test(email)) {
       console.debug("email is invalid");
       setEmailValid(false);
@@ -87,7 +87,6 @@ export function SignUp() {
       console.debug("email is valid");
       setEmailValid(true);
     }
-
   }, 200);
 
   const handleSubmit = () => {
@@ -99,7 +98,8 @@ export function SignUp() {
       body: JSON.stringify({
         email: document.getElementById("email").value.trim(),
         password: document.getElementById("password").value.trim(),
-        display_name: document.getElementById("displayName").value.trim() ?? null,
+        display_name:
+          document.getElementById("displayName").value.trim() ?? null,
       }),
     }).then((res) => {
       if (res.status === 200) {
@@ -118,30 +118,50 @@ export function SignUp() {
     return (
       <Flex>
         <LoginCard>
-          <Title>FDNS</Title>
+          <Title>HOSTSdotTXT</Title>
           <Subtitle>Sign Up</Subtitle>
           <p>Sorry, but sign-ups are currently disabled.</p>
         </LoginCard>
       </Flex>
-    )
+    );
   }
 
   return (
     <Flex>
       <LoginCard>
-        <Title>FDNS</Title>
+        <Title>HOSTSdotTXT</Title>
         <Subtitle>Sign Up</Subtitle>
-        <StyledLabel for="email">Email {!emailValid && <span style={{ color: "red" }}>(!) email appears invalid</span>}</StyledLabel>
+        <StyledLabel for="email">
+          Email{" "}
+          {!emailValid && (
+            <span style={{ color: "red" }}>(!) email appears invalid</span>
+          )}
+        </StyledLabel>
         <Input id="email" onChange={checkEmailValid} type="email"></Input>
         <StyledLabel for="displayName">Display Name</StyledLabel>
         <Input id="displayName"></Input>
         <StyledLabel for="password">Password</StyledLabel>
-        <Input id="password" onChange={checkPasswordsMatch} type="password"></Input>
-        <StyledLabel for="passwordConfirm">Password (Confirm) {!passwordsMatch && <span style={{ color: "red" }}>(!) passwords don't match</span>}</StyledLabel>
-        <Input id="passwordConfirm" onChange={checkPasswordsMatch} type="password"></Input>
+        <Input
+          id="password"
+          onChange={checkPasswordsMatch}
+          type="password"
+        ></Input>
+        <StyledLabel for="passwordConfirm">
+          Password (Confirm){" "}
+          {!passwordsMatch && (
+            <span style={{ color: "red" }}>(!) passwords don't match</span>
+          )}
+        </StyledLabel>
+        <Input
+          id="passwordConfirm"
+          onChange={checkPasswordsMatch}
+          type="password"
+        ></Input>
         <AlignRight>
-          { /* <Button secondary>Cancel</Button> */}
-          <Button onClick={handleSubmit} primary>Sign Up {'\u2794'}</Button>
+          {/* <Button secondary>Cancel</Button> */}
+          <Button onClick={handleSubmit} primary>
+            Sign Up {"\u2794"}
+          </Button>
         </AlignRight>
       </LoginCard>
     </Flex>

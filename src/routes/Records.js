@@ -1,22 +1,185 @@
 // Meow meow meow meow
 import { styled } from "@stitches/react";
+import { RequireAuth, useAuth } from "../hooks/useAuth";
 import React, { useEffect } from "react";
 import "./Records.css";
 import RecordTable from "../components/RecordTable";
+import Modal from "react-modal";
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import Button from "../uikit/Button";
+
+const modalStyle = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 export function Records() {
-  let { zoneName } = useParams();
+  const { zoneName } = useParams();
+  const [zone, setZone] = React.useState();
+  const [showModal, setShowModal] = React.useState(false);
+  const [openRecord, setOpenRecord] = React.useState({});
+  const [updateSignal, setUpdateSignal] = React.useState(0);
 
-  const zone = useFetch("/fdns.dev.json");
-  console.log(zone)
+  const auth = useAuth();
+
+  function setAndOpenRecord(record) {
+    setOpenRecord(record);
+    setShowModal(true);
+  }
+
+  function saveRecord() {
+    let updatedName = openRecord.name;
+    if (!updatedName.endsWith(".")) {
+      updatedName += ".";
+    }
+    const record = { ...openRecord, name: updatedName };
+    console.log(record);
+    if (record.name !== openRecord.name && openRecord.name !== "") {
+      fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+          "Content-Type": "application/json",
+        },
+      }).then((res) => {
+        if (res.status === 200) {
+        } else {
+          alert("Error updating record");
+        }
+      });
+    }
+    fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(record),
+    }).then((res) => {
+      if (res.status === 200) {
+        setShowModal(false);
+        setUpdateSignal(updateSignal + 1);
+      } else {
+        alert("Error updating record");
+      }
+    });
+  }
+
+  function deleteRecord(id) {
+    fetch(`/api/v1/zones/${zoneName}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        setUpdateSignal(updateSignal + 1);
+      } else {
+        alert("Error deleting record");
+      }
+    });
+  }
+
+  // Load zone data on page load
+  useEffect(() => {
+    fetch(`/api/v1/zones/${zoneName}`, {
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        res.json().then((data) => {
+          setZone(data);
+        });
+      } else {
+        alert("Error loading zones");
+      }
+    });
+  }, [zoneName, auth.token, updateSignal]);
+  console.log(zone);
 
   return (
-    <main class="records-table-container">
-      <h1>DNS Records for {zoneName}</h1>
-      <RecordTable records={zone.data}></RecordTable>
-    </main>
+    <RequireAuth>
+      <main class="records-table-container">
+        <h1>DNS Records for {zoneName}</h1>
+        {zone && (
+          <RecordTable
+            records={zone}
+            setAndOpenRecord={setAndOpenRecord}
+            deleteRecord={deleteRecord}
+          ></RecordTable>
+        )}
+        <Modal
+          isOpen={showModal}
+          onRequestClose={() => setShowModal(false)}
+          style={modalStyle}
+        >
+          <table className="modal-table">
+            <thead>
+              <tr>
+                <th style={{ width: "24em" }}>Name</th>
+                <th style={{ width: "8em" }}>Content</th>
+                <th style={{ width: "6em" }}>TTL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input
+                    rows={1}
+                    onChange={(e) =>
+                      setOpenRecord({
+                        ...openRecord,
+                        name: e.target.value,
+                      })
+                    }
+                    defaultValue={openRecord.name}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    rows={1}
+                    onChange={(e) =>
+                      setOpenRecord({
+                        ...openRecord,
+                        content: e.target.value,
+                      })
+                    }
+                    defaultValue={openRecord.content}
+                  ></input>
+                </td>
+                <td>
+                  <input
+                    rows={1}
+                    onChange={(e) =>
+                      setOpenRecord({
+                        ...openRecord,
+                        ttl: parseInt(e.target.value),
+                      })
+                    }
+                    type="number"
+                    defaultValue={openRecord.ttl}
+                  ></input>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <Button secondary onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button onClick={() => saveRecord()}>Save</Button>
+        </Modal>
+      </main>
+    </RequireAuth>
   );
 }
 

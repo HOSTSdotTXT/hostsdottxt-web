@@ -16,12 +16,12 @@
   width: 100%;
   border-radius: 12px;
   /* filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06)); */
-  background-color: #F4F4F5;
+  background-color: #f4f4f5;
 }
 
 .records-thead .records-tr {
-  background-color: #E4E4E7;
-  border: 1px solid #D4D4D8;
+  background-color: #e4e4e7;
+  border: 1px solid #d4d4d8;
   border-bottom: none;
   font-weight: 700;
   border-radius: 12px 12px 0 0;
@@ -29,7 +29,7 @@
 
 .records-tbody .records-tr {
   border-width: 1px;
-  border-color: #D4D4D8;
+  border-color: #d4d4d8;
   border-style: none solid none solid;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .records-tbody .records-tr:nth-child(odd) {
-  background-color: #F4F4F5;
+  background-color: #f4f4f5;
 }
 
 .records-col-type {
@@ -86,4 +86,9 @@
   background-color: initial;
   border: none;
   padding-top: 3px;
+}
+
+.modal-table {
+  margin: auto;
+  text-align: left;
 }

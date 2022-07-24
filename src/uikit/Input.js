@@ -6,7 +6,7 @@ export const StyledInput = styled("input", {
   borderRadius: "4px",
   minWidth: "320px",
   fontSize: "1rem",
-  marginBottom: "0.5em"
+  marginBottom: "0.5em",
 });
 
-export default StyledInput
+export default StyledInput;

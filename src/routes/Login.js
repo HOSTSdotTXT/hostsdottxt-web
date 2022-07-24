@@ -35,7 +35,8 @@ const LoginCard = styled("div", {
 
 const Title = styled("h1", {
   textAlign: "center",
-  fontSize: "5em",
+  fontSize: "3em",
+  fontWeight: "500",
   margin: "1rem 0",
   fontWeight: 300,
 });
@@ -121,16 +122,22 @@ function Login(props) {
   return (
     <Flex>
       <LoginCard>
-        <Title>FDNS</Title>
+        <Title>HOSTSdotTXT</Title>
         <Subtitle>Log In</Subtitle>
         <StyledLabel for="email">Email</StyledLabel>
         <Input id="email" type="email" onChange={checkTotpRequired}></Input>
         <StyledLabel for="password">Password</StyledLabel>
         <Input id="password" type="password" onKeyUp={onKeyPress}></Input>
-        {features.totp && <>
-          <StyledLabel for="totp">TOTP Code</StyledLabel>
-          <Input id="totp" disabled={!totpRequired} placeholder={totpRequired ? "" : "Not Required"}></Input>
-        </>}
+        {features.totp && (
+          <>
+            <StyledLabel for="totp">TOTP Code</StyledLabel>
+            <Input
+              id="totp"
+              disabled={!totpRequired}
+              placeholder={totpRequired ? "" : "Not Required"}
+            ></Input>
+          </>
+        )}
         <AlignRight>
           {/* <Button secondary>Cancel</Button> */}
           <Button onClick={handleSubmit} primary>

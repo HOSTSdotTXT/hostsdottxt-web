@@ -1,5 +1,5 @@
 {
-  "name": "fdns-web",
+  "name": "hdt-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,9 +13,11 @@
     "@testing-library/user-event": "^13.5.0",
     "lodash": "^4.17.21",
     "material-design-icons": "^3.0.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-jwt": "^1.1.6",
+    "react-modal": "^3.15.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.7.2",
@@ -25,9 +27,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "rsync -avz build/ root@hostsdottxt.net:/var/www/html/"
   },
-  "proxy": "http://127.0.0.1:8000",
+  "proxy": "http://hostsdottxt.net",
   "eslintConfig": {
     "extends": [
       "react-app",

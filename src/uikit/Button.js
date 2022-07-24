@@ -14,20 +14,20 @@ export const Button = styled("button", {
     primary: {
       true: {
         backgroundColor: "#3b82f6",
-        '&:hover': {
+        "&:hover": {
           backgroundColor: "#93c5fd",
-        }
-      }
+        },
+      },
     },
     secondary: {
       true: {
-        backgroundColor: "#a1a1aa", 
-        '&:hover': {
+        backgroundColor: "#a1a1aa",
+        "&:hover": {
           backgroundColor: "#d4d4d8",
-        }
-      }
-    }
-  }
-})
+        },
+      },
+    },
+  },
+});
 
-export default Button
+export default Button;
