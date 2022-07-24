@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./hooks/useAuth";
 import { FeaturesProvider } from "./hooks/useFeatures";
 import Records from "./routes/Records";
+import Zones from "./routes/Zones";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,9 +19,10 @@ root.render(
         <BrowserRouter>
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="zones/:zoneName" element={<Records />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/zones" element={<Zones />} />
+            <Route path="/zones/:zoneName" element={<Records />} />
           </Routes>
         </BrowserRouter>
       </FeaturesProvider>
