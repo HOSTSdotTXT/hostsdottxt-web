@@ -128,6 +128,7 @@ export function Records() {
                 <th style={{ width: "24em" }}>Name</th>
                 <th style={{ width: "8em" }}>Content</th>
                 <th style={{ width: "6em" }}>TTL</th>
+                <th>+</th>
               </tr>
             </thead>
             <tbody>
@@ -172,11 +173,14 @@ export function Records() {
               </tr>
             </tbody>
           </table>
-
-          <Button secondary onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button onClick={() => saveRecord()}>Save</Button>
+          <div style={{ display: "flex" }}>
+            <Button secondary onClick={() => setShowModal(false)}>
+              Cancel
+            </Button>
+            <Button primary onClick={() => saveRecord()}>
+              Save
+            </Button>
+          </div>
         </Modal>
       </main>
     </RequireAuth>
