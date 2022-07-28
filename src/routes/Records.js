@@ -8,6 +8,7 @@ import Modal from "react-modal";
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import Button from "../uikit/Button";
+import Input from "../uikit/Input"
 
 const modalStyle = {
   content: {
@@ -134,7 +135,7 @@ export function Records() {
             <tbody>
               <tr>
                 <td>
-                  <input
+                  <Input
                     rows={1}
                     onChange={(e) =>
                       setOpenRecord({
@@ -143,10 +144,10 @@ export function Records() {
                       })
                     }
                     defaultValue={openRecord.name}
-                  ></input>
+                  ></Input>
                 </td>
                 <td>
-                  <input
+                  <Input
                     rows={1}
                     onChange={(e) =>
                       setOpenRecord({
@@ -155,10 +156,10 @@ export function Records() {
                       })
                     }
                     defaultValue={openRecord.content}
-                  ></input>
+                  ></Input>
                 </td>
                 <td>
-                  <input
+                  <Input
                     rows={1}
                     onChange={(e) =>
                       setOpenRecord({
@@ -168,7 +169,7 @@ export function Records() {
                     }
                     type="number"
                     defaultValue={openRecord.ttl}
-                  ></input>
+                  ></Input>
                 </td>
               </tr>
             </tbody>

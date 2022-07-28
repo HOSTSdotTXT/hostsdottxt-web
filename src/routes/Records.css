@@ -92,3 +92,16 @@
   margin: auto;
   text-align: left;
 }
+
+/* keep weight consistent with login screen */
+.modal-table th {
+  font-weight: 400;
+}
+
+/* Can't find how to proprely style this */
+.ReactModal__Content {
+  border-radius: 10px !important;
+  border-color: #d4d4d8 !important;
+  background-color: #FAFAFA !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

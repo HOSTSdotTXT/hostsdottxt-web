@@ -2,13 +2,14 @@ import { styled } from "@stitches/react";
 
 export const Button = styled("button", {
   display: "block",
-  padding: "0.5rem",
+  // Making the button wider makes it look less cramped
+  padding: "0.5rem 1rem",
   fontSize: "1rem",
   margin: "0.2rem",
   border: "none",
-  borderRadius: "4px",
+  borderRadius: "6px",
   color: "#fafafa",
-  transition: "background-color 0.2s ease-in-out",
+  transition: "background-color 0.1s ease-out",
 
   variants: {
     primary: {

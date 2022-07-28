@@ -23,14 +23,17 @@ const Flex = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   minHeight: "100vh",
+  // If ever we decide to move the title out of the login card itself
+  flexDirection: "column"
 });
 
 const LoginCard = styled("div", {
   boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-  borderRadius: "4px",
+  borderRadius: "12px",
   padding: "1em",
   border: "1px solid #D4D4D8",
   backgroundColor: "#F4F4F5",
+  width: "360px"
 });
 
 const Title = styled("h1", {
@@ -124,13 +127,13 @@ function Login(props) {
       <LoginCard>
         <Title>HOSTSdotTXT</Title>
         <Subtitle>Log In</Subtitle>
-        <StyledLabel for="email">Email</StyledLabel>
+        <StyledLabel htmlFor="email">Email</StyledLabel>
         <Input id="email" type="email" onChange={checkTotpRequired}></Input>
-        <StyledLabel for="password">Password</StyledLabel>
+        <StyledLabel htmlFor="password">Password</StyledLabel>
         <Input id="password" type="password" onKeyUp={onKeyPress}></Input>
         {features.totp && (
           <>
-            <StyledLabel for="totp">TOTP Code</StyledLabel>
+            <StyledLabel htmlFor="totp">TOTP Code</StyledLabel>
             <Input
               id="totp"
               disabled={!totpRequired}
