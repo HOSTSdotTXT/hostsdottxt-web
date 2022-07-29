@@ -2,7 +2,7 @@ import { styled } from "@stitches/react";
 
 export const Button = styled("button", {
   display: "block",
-  // Making the button wider makes it look less cramped
+  // Making the button wider and not taller makes it look less cramped
   padding: "0.5rem 1rem",
   fontSize: "1rem",
   margin: "0.2rem",

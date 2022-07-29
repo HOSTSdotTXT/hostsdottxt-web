@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "deploy": "rsync -avz build/ root@hostsdottxt.net:/var/www/html/"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://hostsdottxt.net",
   "eslintConfig": {
     "extends": [
       "react-app",

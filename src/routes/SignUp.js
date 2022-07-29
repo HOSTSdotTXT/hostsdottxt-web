@@ -12,6 +12,8 @@ const Flex = styled("div", {
   alignItems: "center",
   justifyContent: "center",
   minHeight: "100vh",
+  // If ever we decide to move the title out of the login card itself
+  flexDirection: "column",
 });
 
 const LoginCard = styled("div", {
@@ -20,14 +22,14 @@ const LoginCard = styled("div", {
   padding: "1em",
   border: "1px solid #D4D4D8",
   backgroundColor: "#F4F4F5",
+  width: "360px",
 });
 
 const Title = styled("h1", {
   textAlign: "center",
   fontSize: "3em",
-  fontWeight: "500",
   margin: "1rem 0",
-  fontWeight: 300,
+  fontWeight: "300",
 });
 
 const Subtitle = styled("h1", {
@@ -117,10 +119,10 @@ export function SignUp() {
   if (!features.signup) {
     return (
       <Flex>
+        <Title>HOSTSdotTXT</Title>
         <LoginCard>
-          <Title>HOSTSdotTXT</Title>
           <Subtitle>Sign Up</Subtitle>
-          <p>Sorry, but sign-ups are currently disabled.</p>
+          <center><p>Sorry, but sign-ups are currently disabled.</p></center>
         </LoginCard>
       </Flex>
     );
@@ -128,8 +130,8 @@ export function SignUp() {
 
   return (
     <Flex>
+      <Title>HOSTSdotTXT</Title>
       <LoginCard>
-        <Title>HOSTSdotTXT</Title>
         <Subtitle>Sign Up</Subtitle>
         <StyledLabel for="email">
           Email{" "}

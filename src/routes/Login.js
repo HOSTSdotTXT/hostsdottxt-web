@@ -1,22 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import React from "react";
 import {
-  Routes,
-  Route,
-  Link,
   useNavigate,
   useLocation,
-  Navigate,
-  Outlet,
 } from "react-router-dom";
 import Button from "../uikit/Button.js";
 import Input from "../uikit/Input.js";
-import { useAuth } from "../hooks/useAuth";
-import { useFeatures } from "../hooks/useFeatures";
-import { isExpired } from "react-jwt";
-import { styled } from "@stitches/react";
-import { debounce } from "lodash";
-import { keyframes } from "@stitches/react";
+import {useAuth} from "../hooks/useAuth";
+import {useFeatures} from "../hooks/useFeatures";
+import {isExpired} from "react-jwt";
+import {styled} from "@stitches/react";
+import {debounce} from "lodash";
 
 const Flex = styled("div", {
   display: "flex",
@@ -24,7 +18,7 @@ const Flex = styled("div", {
   justifyContent: "center",
   minHeight: "100vh",
   // If ever we decide to move the title out of the login card itself
-  flexDirection: "column"
+  flexDirection: "column",
 });
 
 const LoginCard = styled("div", {
@@ -33,15 +27,14 @@ const LoginCard = styled("div", {
   padding: "1em",
   border: "1px solid #D4D4D8",
   backgroundColor: "#F4F4F5",
-  width: "360px"
+  width: "360px",
 });
 
 const Title = styled("h1", {
   textAlign: "center",
   fontSize: "3em",
-  fontWeight: "500",
+  fontWeight: "300",
   margin: "1rem 0",
-  fontWeight: 300,
 });
 
 const Subtitle = styled("h1", {
@@ -74,7 +67,7 @@ function Login(props) {
 
   useEffect(() => {
     if (auth.token && !isExpired(auth.token)) {
-      navigate(from, { replace: true });
+      navigate(from, {replace: true});
     }
   }, [auth.token, from, navigate]);
 
@@ -92,7 +85,7 @@ function Login(props) {
       if (res.status === 200) {
         res.json().then((data) => {
           auth.signin(data.token, () => {
-            navigate(from, { replace: true });
+            navigate(from, {replace: true});
           });
         });
       } else {
@@ -116,7 +109,7 @@ function Login(props) {
   }, 200);
 
   function onKeyPress(e) {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit();
     }
@@ -124,8 +117,8 @@ function Login(props) {
 
   return (
     <Flex>
+      <Title>HOSTSdotTXT</Title>
       <LoginCard>
-        <Title>HOSTSdotTXT</Title>
         <Subtitle>Log In</Subtitle>
         <StyledLabel htmlFor="email">Email</StyledLabel>
         <Input id="email" type="email" onChange={checkTotpRequired}></Input>
