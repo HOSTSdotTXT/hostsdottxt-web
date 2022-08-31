@@ -1,5 +1,5 @@
-import {styled} from "@stitches/react";
-import {RequireAuth, useAuth} from "../hooks/useAuth";
+import { styled } from "@stitches/react";
+import { RequireAuth, useAuth } from "../hooks/useAuth";
 import useFetch from "../hooks/useFetch";
 
 const Container = styled("main", {
@@ -28,7 +28,7 @@ const LinkStyled = styled("a", {
 export default function Zones() {
   const auth = useAuth();
 
-  let {data, loading, error} = useFetch("/api/v1/zones", {
+  let { data, loading, error } = useFetch("/api/v1/zones", {
     headers: {
       Authorization: auth.token,
     },
@@ -38,7 +38,7 @@ export default function Zones() {
     return (
       <RequireAuth>
         <Container>
-          <div style={{padding: "0px 32px"}}>
+          <div style={{ padding: "0px 32px" }}>
             <h1>Available Zones</h1>
             <h2>Loading zones...</h2>
           </div>
@@ -46,13 +46,16 @@ export default function Zones() {
       </RequireAuth>
     );
   }
+  if (error) {
+    alert(error);
+  }
 
   return (
     <RequireAuth>
       <Container>
-        <div style={{padding: "0px 32px"}}>
+        <div style={{ padding: "0px 32px" }}>
           <h1>Available Zones</h1>
-          <div style={{display: "flex"}}>
+          <div style={{ display: "flex" }}>
             {data.map((zone) => {
               return (
                 <LinkStyled href={"/zones/" + zone.id}>

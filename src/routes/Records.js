@@ -1,25 +1,10 @@
 // Meow meow meow meow
-import { styled } from "@stitches/react";
 import { RequireAuth, useAuth } from "../hooks/useAuth";
 import React, { useEffect } from "react";
 import "./Records.css";
 import RecordTable from "../components/RecordTable";
-import Modal from "react-modal";
-import useFetch from "../hooks/useFetch";
+import RecordModal from "../components/RecordModal";
 import { useParams } from "react-router-dom";
-import Button from "../uikit/Button";
-import Input from "../uikit/Input"
-
-const modalStyle = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 
 export function Records() {
   const { zoneName } = useParams();
@@ -118,70 +103,13 @@ export function Records() {
             deleteRecord={deleteRecord}
           ></RecordTable>
         )}
-        <Modal
-          isOpen={showModal}
-          onRequestClose={() => setShowModal(false)}
-          style={modalStyle}
-        >
-          <table className="modal-table">
-            <thead>
-              <tr>
-                <th style={{ width: "24em" }}>Name</th>
-                <th style={{ width: "8em" }}>Content</th>
-                <th style={{ width: "6em" }}>TTL</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Input
-                    rows={1}
-                    onChange={(e) =>
-                      setOpenRecord({
-                        ...openRecord,
-                        name: e.target.value,
-                      })
-                    }
-                    defaultValue={openRecord.name}
-                  ></Input>
-                </td>
-                <td>
-                  <Input
-                    rows={1}
-                    onChange={(e) =>
-                      setOpenRecord({
-                        ...openRecord,
-                        content: e.target.value,
-                      })
-                    }
-                    defaultValue={openRecord.content}
-                  ></Input>
-                </td>
-                <td>
-                  <Input
-                    rows={1}
-                    onChange={(e) =>
-                      setOpenRecord({
-                        ...openRecord,
-                        ttl: parseInt(e.target.value),
-                      })
-                    }
-                    type="number"
-                    defaultValue={openRecord.ttl}
-                  ></Input>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div style={{ display: "flex" }}>
-            <Button secondary onClick={() => setShowModal(false)}>
-              Cancel
-            </Button>
-            <Button primary onClick={() => saveRecord()}>
-              Save
-            </Button>
-          </div>
-        </Modal>
+        <RecordModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          openRecord={openRecord}
+          setOpenRecord={setOpenRecord}
+          saveRecord={saveRecord}
+        />
       </main>
     </RequireAuth>
   );

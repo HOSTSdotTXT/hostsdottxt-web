@@ -122,7 +122,9 @@ export function SignUp() {
         <Title>HOSTSdotTXT</Title>
         <LoginCard>
           <Subtitle>Sign Up</Subtitle>
-          <center><p>Sorry, but sign-ups are currently disabled.</p></center>
+          <center>
+            <p>Sorry, but sign-ups are currently disabled.</p>
+          </center>
         </LoginCard>
       </Flex>
     );

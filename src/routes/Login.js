@@ -1,16 +1,13 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import React from "react";
-import {
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "../uikit/Button.js";
 import Input from "../uikit/Input.js";
-import {useAuth} from "../hooks/useAuth";
-import {useFeatures} from "../hooks/useFeatures";
-import {isExpired} from "react-jwt";
-import {styled} from "@stitches/react";
-import {debounce} from "lodash";
+import { useAuth } from "../hooks/useAuth";
+import { useFeatures } from "../hooks/useFeatures";
+import { isExpired } from "react-jwt";
+import { styled } from "@stitches/react";
+import { debounce } from "lodash";
 
 const Flex = styled("div", {
   display: "flex",
@@ -67,7 +64,7 @@ function Login(props) {
 
   useEffect(() => {
     if (auth.token && !isExpired(auth.token)) {
-      navigate(from, {replace: true});
+      navigate(from, { replace: true });
     }
   }, [auth.token, from, navigate]);
 
@@ -85,7 +82,7 @@ function Login(props) {
       if (res.status === 200) {
         res.json().then((data) => {
           auth.signin(data.token, () => {
-            navigate(from, {replace: true});
+            navigate(from, { replace: true });
           });
         });
       } else {

@@ -11,7 +11,7 @@ export default function useFetch(url, options) {
       .then((resp) => setData(resp))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
-  }, []);
+  });
 
   return { data, loading, error };
 }

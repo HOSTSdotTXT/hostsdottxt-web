@@ -54,7 +54,9 @@ export default function RecordsTable({
           <div class="records-th records-col-value">Value</div>
           <div class="records-th records-col-ttl">TTL</div>
           {/* TODO: Stop using NBSP for styling */}
-          <div class="records-th records-col-actions">+&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <div class="records-th records-col-actions">
+            +&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
         </div>
       </div>
       <div class="records-tbody" role="rowgroup">
