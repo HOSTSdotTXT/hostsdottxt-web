@@ -1,15 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import SignUp from "./routes/SignUp.js";
-import Login from "./routes/Login";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./hooks/useAuth";
 import { FeaturesProvider } from "./hooks/useFeatures";
-import Records from "./routes/Records";
-import Zones from "./routes/Zones";
-import Home from "./routes/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -17,15 +12,7 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <FeaturesProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/zones" element={<Zones />} />
-            <Route path="/zones/:zoneName" element={<Records />} />
-            <Route path="/" exact element={<Home />} />
-          </Routes>
-        </BrowserRouter>
+        <App />
       </FeaturesProvider>
     </AuthProvider>
   </React.StrictMode>

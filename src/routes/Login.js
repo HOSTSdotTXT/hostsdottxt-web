@@ -139,7 +139,11 @@ function Login(props) {
           </Button>
         </AlignRight>
         <center>
-          {features.signup && (<p>Don't have an account? <Link to="/signup">Sign up!</Link></p>)}
+          {features.signup && (
+            <p>
+              Don't have an account? <Link to="/signup">Sign up!</Link>
+            </p>
+          )}
         </center>
       </LoginCard>
     </Flex>
