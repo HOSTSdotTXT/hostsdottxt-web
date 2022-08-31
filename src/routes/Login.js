@@ -63,7 +63,7 @@ function Login(props) {
   let features = useFeatures();
   const [totpRequired, setTotpRequired] = useState(false);
 
-  let from = location.state?.from?.pathname || "/";
+  let from = location.state?.from?.pathname || "/zones";
 
   useEffect(() => {
     if (auth.token && !isExpired(auth.token)) {

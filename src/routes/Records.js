@@ -129,7 +129,6 @@ export function Records() {
                 <th style={{ width: "24em" }}>Name</th>
                 <th style={{ width: "8em" }}>Content</th>
                 <th style={{ width: "6em" }}>TTL</th>
-                <th>+</th>
               </tr>
             </thead>
             <tbody>
