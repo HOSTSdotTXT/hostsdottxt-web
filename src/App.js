@@ -54,11 +54,13 @@ function ButtonRow() {
   )
 }
 function App() {
+  let auth = useAuth()
+
   return (
     <div className="App">
       <BrowserRouter>
         <header>
-          <Link to="/">
+          <Link to={auth.isAuthenticated() ? "/zones" : "/"}>
             <h1>
               HOSTS<b>dot</b>TXT
             </h1>
