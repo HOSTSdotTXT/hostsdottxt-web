@@ -1,5 +1,5 @@
-import React from "react";
-import IconButton from "./IconButton.js";
+import IconButton from './IconButton.js'
+import React from 'react'
 
 export default function Record(props) {
   return (
@@ -20,5 +20,5 @@ export default function Record(props) {
         </IconButton>
       </div>
     </div>
-  );
+  )
 }

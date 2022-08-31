@@ -1,13 +1,13 @@
-import Button from "../uikit/Button";
-import { useState, useEffect } from "react";
+import Button from '../uikit/Button'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
-  let [metrics, setMetrics] = useState();
+  let [metrics, setMetrics] = useState()
   useEffect(() => {
-    fetch("/api/v1/metrics")
+    fetch('/api/v1/metrics')
       .then((resp) => resp.json())
-      .then((resp) => setMetrics(resp));
-  }, []);
+      .then((resp) => setMetrics(resp))
+  }, [])
 
   return (
     <div>
@@ -20,5 +20,5 @@ export default function Home() {
         )}
       </div>
     </div>
-  );
+  )
 }

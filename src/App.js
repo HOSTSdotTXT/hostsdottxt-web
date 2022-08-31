@@ -1,25 +1,25 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./routes/Home";
-import Zones from "./routes/Zones";
-import Records from "./routes/Records";
-import SignUp from "./routes/SignUp.js";
-import Login from "./routes/Login";
-import Button from "./uikit/Button";
-import { Link } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth";
+import './App.css'
+import { useAuth } from './hooks/useAuth'
+import Home from './routes/Home'
+import Login from './routes/Login'
+import Records from './routes/Records'
+import SignUp from './routes/SignUp.js'
+import Zones from './routes/Zones'
+import Button from './uikit/Button'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function ButtonRow() {
-  let auth = useAuth();
+  let auth = useAuth()
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: 'flex' }}>
       {auth.isAuthenticated() ? (
         <>
           <Button
             className="LoginButton"
             primary
-            onClick={() => (document.location = "/zones")}
+            onClick={() => (document.location = '/zones')}
           >
             Zones
           </Button>
@@ -36,21 +36,21 @@ function ButtonRow() {
           <Button
             className="LoginButton"
             primary
-            onClick={() => (document.location = "/login")}
+            onClick={() => (document.location = '/login')}
           >
             Login
           </Button>
           <Button
             className="LoginButton"
             secondary
-            onClick={() => (document.location = "/signup")}
+            onClick={() => (document.location = '/signup')}
           >
             Sign Up
           </Button>
         </>
       )}
     </div>
-  );
+  )
 }
 function App() {
   return (
@@ -73,7 +73,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

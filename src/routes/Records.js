@@ -1,103 +1,103 @@
 // Meow meow meow meow
-import { RequireAuth, useAuth } from "../hooks/useAuth";
-import React, { useEffect } from "react";
-import "./Records.css";
-import RecordTable from "../components/RecordTable";
-import RecordModal from "../components/RecordModal";
-import { useParams } from "react-router-dom";
+import RecordModal from '../components/RecordModal'
+import RecordTable from '../components/RecordTable'
+import { RequireAuth, useAuth } from '../hooks/useAuth'
+import './Records.css'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 export function Records() {
-  const { zoneName } = useParams();
-  const [zone, setZone] = React.useState();
-  const [showModal, setShowModal] = React.useState(false);
-  const [openRecord, setOpenRecord] = React.useState({});
-  const [originalRecord, setOriginalRecord] = React.useState({});
-  const [updateSignal, setUpdateSignal] = React.useState(0);
+  const { zoneName } = useParams()
+  const [zone, setZone] = React.useState()
+  const [showModal, setShowModal] = React.useState(false)
+  const [openRecord, setOpenRecord] = React.useState({})
+  const [originalRecord, setOriginalRecord] = React.useState({})
+  const [updateSignal, setUpdateSignal] = React.useState(0)
 
-  const auth = useAuth();
+  const auth = useAuth()
 
   function setAndOpenRecord(record) {
-    setOpenRecord(record);
-    setOriginalRecord(record);
-    setShowModal(true);
+    setOpenRecord(record)
+    setOriginalRecord(record)
+    setShowModal(true)
   }
 
   function saveRecord() {
-    let updatedName = openRecord.name;
-    if (!updatedName.endsWith(".")) {
-      updatedName += ".";
+    let updatedName = openRecord.name
+    if (!updatedName.endsWith('.')) {
+      updatedName += '.'
     }
     if (!updatedName.endsWith(zoneName)) {
-      updatedName += zoneName;
+      updatedName += zoneName
     }
-    const record = { ...openRecord, name: updatedName };
-    if (record.name !== originalRecord.name && originalRecord.name !== "") {
+    const record = { ...openRecord, name: updatedName }
+    if (record.name !== originalRecord.name && originalRecord.name !== '') {
       fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
           Authorization: `Bearer ${auth.token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }).then((res) => {
         if (res.status === 200) {
         } else {
-          alert("Error updating record");
+          alert('Error updating record')
         }
-      });
+      })
     }
     if (record.id != null) {
       fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
           Authorization: `Bearer ${auth.token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(record),
       }).then((res) => {
         if (res.status === 200) {
-          setShowModal(false);
-          setUpdateSignal(updateSignal + 1);
-          setOpenRecord({});
-          setOriginalRecord({});
+          setShowModal(false)
+          setUpdateSignal(updateSignal + 1)
+          setOpenRecord({})
+          setOriginalRecord({})
         } else {
-          alert("Error updating record");
+          alert('Error updating record')
         }
-      });
+      })
     } else {
       fetch(`/api/v1/zones/${zoneName}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
           Authorization: `Bearer ${auth.token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(record),
       }).then((res) => {
         if (res.status === 200) {
-          setShowModal(false);
-          setUpdateSignal(updateSignal + 1);
-          setOpenRecord({});
-          setOriginalRecord({});
+          setShowModal(false)
+          setUpdateSignal(updateSignal + 1)
+          setOpenRecord({})
+          setOriginalRecord({})
         } else {
-          alert("Error creating record");
+          alert('Error creating record')
         }
-      });
+      })
     }
   }
 
   function deleteRecord(id) {
     fetch(`/api/v1/zones/${zoneName}/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${auth.token}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     }).then((res) => {
       if (res.status === 200) {
-        setUpdateSignal(updateSignal + 1);
+        setUpdateSignal(updateSignal + 1)
       } else {
-        alert("Error deleting record");
+        alert('Error deleting record')
       }
-    });
+    })
   }
 
   // Load zone data on page load
@@ -109,13 +109,13 @@ export function Records() {
     }).then((res) => {
       if (res.status === 200) {
         res.json().then((data) => {
-          setZone(data);
-        });
+          setZone(data)
+        })
       } else {
-        alert("Error loading zones");
+        alert('Error loading zones')
       }
-    });
-  }, [zoneName, auth.token, updateSignal]);
+    })
+  }, [zoneName, auth.token, updateSignal])
 
   return (
     <RequireAuth>
@@ -137,7 +137,7 @@ export function Records() {
         />
       </main>
     </RequireAuth>
-  );
+  )
 }
 
-export default Records;
+export default Records

@@ -1,40 +1,40 @@
-import React from "react";
-import Record from "./Record";
-import Button from "../uikit/Button";
+import Button from '../uikit/Button'
+import Record from './Record'
+import React from 'react'
 
 // ENUM: sort columns: name, type, value
 const sortColumns = Object.freeze({
-  TYPE: "type",
-  NAME: "name",
-  VALUE: "value",
-});
+  TYPE: 'type',
+  NAME: 'name',
+  VALUE: 'value',
+})
 
 const sortDirections = Object.freeze({
-  UP: "up",
-  DOWN: "down",
-});
+  UP: 'up',
+  DOWN: 'down',
+})
 
 function sort(records, direction, smart, column) {
-  let sortVal = records.map((record) => [record, record[column]]);
+  let sortVal = records.map((record) => [record, record[column]])
   if (smart && column === sortColumns.NAME) {
     sortVal = records.map((record) => [
       record,
-      record.name.split(".").reverse().join("."),
-    ]);
+      record.name.split('.').reverse().join('.'),
+    ])
   }
   sortVal = sortVal.sort((a, b) => {
     if (a[1] > b[1]) {
-      return 1;
+      return 1
     }
     if (a[1] < b[1]) {
-      return -1;
+      return -1
     }
-    return 0;
-  });
+    return 0
+  })
   if (direction === sortDirections.DOWN) {
-    sortVal = sortVal.reverse();
+    sortVal = sortVal.reverse()
   }
-  return sortVal.map((record) => record[0]);
+  return sortVal.map((record) => record[0])
 }
 
 export default function RecordsTable({
@@ -48,7 +48,7 @@ export default function RecordsTable({
       <div class="records-thead" role="rowgroup">
         <div class="records-tr" role="row">
           <div class="records-th records-col-type">
-            Type{" "}
+            Type{' '}
             {/* We need to put a button here which switches sorting direction and column*/}
           </div>
           <div class="records-th records-col-name">Name</div>
@@ -58,7 +58,12 @@ export default function RecordsTable({
           <div class="records-th records-col-actions">
             <Button
               onClick={() =>
-                setAndOpenRecord({ name: "", content: "", ttl: 300, type: "A" })
+                setAndOpenRecord({
+                  name: '',
+                  content: '',
+                  ttl: 300,
+                  type: 'A',
+                })
               }
               primary
             >
@@ -81,10 +86,10 @@ export default function RecordsTable({
                   setAndOpenRecord={() => setAndOpenRecord(val)}
                   deleteRecord={() => deleteRecord(val.id)}
                 ></Record>
-              );
+              )
             }
           )}
       </div>
     </div>
-  );
+  )
 }

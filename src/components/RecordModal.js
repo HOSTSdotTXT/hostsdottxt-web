@@ -1,21 +1,21 @@
-import Modal from "react-modal";
-import Button from "../uikit/Button";
-import Input, { StyledSelect } from "../uikit/Input";
+import Button from '../uikit/Button'
+import Input, { StyledSelect } from '../uikit/Input'
+import Modal from 'react-modal'
 
 const modalStyle = {
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
   },
-};
+}
 
 export default function RecordModal(props) {
   const { showModal, setShowModal, openRecord, setOpenRecord, saveRecord } =
-    props;
+    props
   return (
     <Modal
       isOpen={showModal}
@@ -25,10 +25,10 @@ export default function RecordModal(props) {
       <table className="modal-table">
         <thead>
           <tr>
-            <th style={{ width: "6em" }}>Type</th>
-            <th style={{ width: "24em" }}>Name</th>
-            <th style={{ width: "8em" }}>Content</th>
-            <th style={{ width: "6em" }}>TTL</th>
+            <th style={{ width: '6em' }}>Type</th>
+            <th style={{ width: '24em' }}>Name</th>
+            <th style={{ width: '8em' }}>Content</th>
+            <th style={{ width: '6em' }}>TTL</th>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +36,10 @@ export default function RecordModal(props) {
             <td>
               <StyledSelect
                 onChange={(e) =>
-                  setOpenRecord({ ...openRecord, type: e.target.value })
+                  setOpenRecord({
+                    ...openRecord,
+                    type: e.target.value,
+                  })
                 }
                 defaultValue="A"
               >
@@ -87,7 +90,7 @@ export default function RecordModal(props) {
           </tr>
         </tbody>
       </table>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         <Button secondary onClick={() => setShowModal(false)}>
           Cancel
         </Button>
@@ -96,5 +99,5 @@ export default function RecordModal(props) {
         </Button>
       </div>
     </Modal>
-  );
+  )
 }
