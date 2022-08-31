@@ -44,18 +44,18 @@ export default function RecordsTable({
 }) {
   return (
     // checkbox here that toggles smart sorting
-    <div role="table" class="table">
-      <div class="records-thead" role="rowgroup">
-        <div class="records-tr" role="row">
-          <div class="records-th records-col-type">
+    <div role="table" className="table">
+      <div className="records-thead" role="rowgroup">
+        <div className="records-tr" role="row">
+          <div className="records-th records-col-type">
             Type{' '}
             {/* We need to put a button here which switches sorting direction and column*/}
           </div>
-          <div class="records-th records-col-name">Name</div>
-          <div class="records-th records-col-value">Value</div>
-          <div class="records-th records-col-ttl">TTL</div>
+          <div className="records-th records-col-name">Name</div>
+          <div className="records-th records-col-value">Value</div>
+          <div className="records-th records-col-ttl">TTL</div>
           {/* TODO: Stop using NBSP for styling */}
-          <div class="records-th records-col-actions">
+          <div className="records-th records-col-actions">
             <Button
               onClick={() =>
                 setAndOpenRecord({
@@ -72,7 +72,7 @@ export default function RecordsTable({
           </div>
         </div>
       </div>
-      <div class="records-tbody" role="rowgroup">
+      <div className="records-tbody" role="rowgroup">
         {records != null &&
           sort(records, sortDirections.UP, true, sortColumns.TYPE).map(
             (val) => {

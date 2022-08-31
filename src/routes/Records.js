@@ -119,7 +119,7 @@ export function Records() {
 
   return (
     <RequireAuth>
-      <main class="records-table-container">
+      <main className="records-table-container">
         <h1>DNS Records for {zoneName}</h1>
         {zone && (
           <RecordTable

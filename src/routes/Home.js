@@ -1,4 +1,3 @@
-import Button from '../uikit/Button'
 import { useEffect, useState } from 'react'
 
 export default function Home() {

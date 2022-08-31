@@ -64,7 +64,7 @@ export function SignUp() {
     if (auth.isAuthenticated()) {
       navigate(from, { replace: true })
     }
-  }, [auth.token, from, navigate])
+  }, [auth, from, navigate])
 
   const checkPasswordsMatch = debounce((e) => {
     const password = document.getElementById('password').value

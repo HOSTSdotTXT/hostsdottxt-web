@@ -1,6 +1,7 @@
 import { RequireAuth, useAuth } from '../hooks/useAuth'
 import useFetch from '../hooks/useFetch'
 import { styled } from '@stitches/react'
+import { Link } from 'react-router-dom'
 
 const Container = styled('main', {
   maxWidth: '800px',
@@ -20,7 +21,7 @@ const Card = styled('div', {
   },
 })
 
-const LinkStyled = styled('a', {
+const LinkStyled = styled(Link, {
   textDecoration: 'none',
   color: 'inherit',
 })
@@ -58,7 +59,7 @@ export default function Zones() {
           <div style={{ display: 'flex' }}>
             {data.map((zone) => {
               return (
-                <LinkStyled href={'/zones/' + zone.id}>
+                <LinkStyled to={'/zones/' + zone.id}>
                   <Card>{zone.id}</Card>
                 </LinkStyled>
               )

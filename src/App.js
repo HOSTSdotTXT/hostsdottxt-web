@@ -7,10 +7,11 @@ import SignUp from './routes/SignUp.js'
 import Zones from './routes/Zones'
 import Button from './uikit/Button'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ButtonRow() {
   let auth = useAuth()
+  let navigate = useNavigate();
 
   return (
     <div style={{ display: 'flex' }}>
@@ -19,14 +20,14 @@ function ButtonRow() {
           <Button
             className="LoginButton"
             primary
-            onClick={() => (document.location = '/zones')}
+            onClick={() => (navigate('/zones'))}
           >
             Zones
           </Button>
           <Button
             className="LoginButton"
             secondary
-            onClick={() => auth.signout(() => {})}
+            onClick={() => auth.signout(() => navigate('/'))}
           >
             Log Out
           </Button>
@@ -36,14 +37,14 @@ function ButtonRow() {
           <Button
             className="LoginButton"
             primary
-            onClick={() => (document.location = '/login')}
+            onClick={() => (navigate('/login'))}
           >
             Login
           </Button>
           <Button
             className="LoginButton"
             secondary
-            onClick={() => (document.location = '/signup')}
+            onClick={() => (navigate('/signup'))}
           >
             Sign Up
           </Button>
