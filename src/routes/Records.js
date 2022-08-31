@@ -11,12 +11,14 @@ export function Records() {
   const [zone, setZone] = React.useState();
   const [showModal, setShowModal] = React.useState(false);
   const [openRecord, setOpenRecord] = React.useState({});
+  const [originalRecord, setOriginalRecord] = React.useState({});
   const [updateSignal, setUpdateSignal] = React.useState(0);
 
   const auth = useAuth();
 
   function setAndOpenRecord(record) {
     setOpenRecord(record);
+    setOriginalRecord(record);
     setShowModal(true);
   }
 
@@ -25,9 +27,11 @@ export function Records() {
     if (!updatedName.endsWith(".")) {
       updatedName += ".";
     }
+    if (!updatedName.endsWith(zoneName)) {
+      updatedName += zoneName;
+    }
     const record = { ...openRecord, name: updatedName };
-    console.log(record);
-    if (record.name !== openRecord.name && openRecord.name !== "") {
+    if (record.name !== originalRecord.name && originalRecord.name !== "") {
       fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
         method: "DELETE",
         headers: {
@@ -41,21 +45,43 @@ export function Records() {
         }
       });
     }
-    fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(record),
-    }).then((res) => {
-      if (res.status === 200) {
-        setShowModal(false);
-        setUpdateSignal(updateSignal + 1);
-      } else {
-        alert("Error updating record");
-      }
-    });
+    if (record.id != null) {
+      fetch(`/api/v1/zones/${zoneName}/${record.id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(record),
+      }).then((res) => {
+        if (res.status === 200) {
+          setShowModal(false);
+          setUpdateSignal(updateSignal + 1);
+          setOpenRecord({});
+          setOriginalRecord({});
+        } else {
+          alert("Error updating record");
+        }
+      });
+    } else {
+      fetch(`/api/v1/zones/${zoneName}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(record),
+      }).then((res) => {
+        if (res.status === 200) {
+          setShowModal(false);
+          setUpdateSignal(updateSignal + 1);
+          setOpenRecord({});
+          setOriginalRecord({});
+        } else {
+          alert("Error creating record");
+        }
+      });
+    }
   }
 
   function deleteRecord(id) {
@@ -90,7 +116,6 @@ export function Records() {
       }
     });
   }, [zoneName, auth.token, updateSignal]);
-  console.log(zone);
 
   return (
     <RequireAuth>

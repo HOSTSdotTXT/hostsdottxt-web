@@ -9,6 +9,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import { FeaturesProvider } from "./hooks/useFeatures";
 import Records from "./routes/Records";
 import Zones from "./routes/Zones";
+import Home from "./routes/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,11 +19,11 @@ root.render(
       <FeaturesProvider>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/zones" element={<Zones />} />
             <Route path="/zones/:zoneName" element={<Records />} />
+            <Route path="/" exact element={<Home />} />
           </Routes>
         </BrowserRouter>
       </FeaturesProvider>

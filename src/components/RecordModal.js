@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import Button from "../uikit/Button";
-import Input from "../uikit/Input";
+import Input, { StyledSelect } from "../uikit/Input";
 
 const modalStyle = {
   content: {
@@ -25,6 +25,7 @@ export default function RecordModal(props) {
       <table className="modal-table">
         <thead>
           <tr>
+            <th style={{ width: "6em" }}>Type</th>
             <th style={{ width: "24em" }}>Name</th>
             <th style={{ width: "8em" }}>Content</th>
             <th style={{ width: "6em" }}>TTL</th>
@@ -32,6 +33,17 @@ export default function RecordModal(props) {
         </thead>
         <tbody>
           <tr>
+            <td>
+              <StyledSelect
+                onChange={(e) =>
+                  setOpenRecord({ ...openRecord, type: e.target.value })
+                }
+                defaultValue="A"
+              >
+                <option value="A">A</option>
+                <option value="AAAA">AAAA</option>
+              </StyledSelect>
+            </td>
             <td>
               <Input
                 rows={1}

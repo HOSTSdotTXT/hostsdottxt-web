@@ -81,12 +81,12 @@
   padding-right: 1em;
   min-width: calc(48px + 1em);
 }
-
+/* 
 .records-col-actions button {
   background-color: initial;
   border: none;
   padding-top: 3px;
-}
+} */
 
 .modal-table {
   margin: auto;

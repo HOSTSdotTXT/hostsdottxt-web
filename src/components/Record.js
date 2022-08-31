@@ -12,14 +12,12 @@ export default function Record(props) {
       </div>
       <div class="records-td records-col-ttl">{props.ttl}</div>
       <div class="records-td records-col-actions">
-        <IconButton
-          icon="pencil"
-          action={() => props.setAndOpenRecord()}
-        ></IconButton>
-        <IconButton
-          icon="trash"
-          action={() => props.deleteRecord()}
-        ></IconButton>
+        <IconButton icon="pencil" action={() => props.setAndOpenRecord()}>
+          (edit)
+        </IconButton>
+        <IconButton icon="trash" action={() => props.deleteRecord()}>
+          (delete)
+        </IconButton>
       </div>
     </div>
   );

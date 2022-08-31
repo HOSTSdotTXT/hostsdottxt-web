@@ -1,5 +1,6 @@
 import React from "react";
 import Record from "./Record";
+import Button from "../uikit/Button";
 
 // ENUM: sort columns: name, type, value
 const sortColumns = Object.freeze({
@@ -55,7 +56,14 @@ export default function RecordsTable({
           <div class="records-th records-col-ttl">TTL</div>
           {/* TODO: Stop using NBSP for styling */}
           <div class="records-th records-col-actions">
-            +&nbsp;&nbsp;&nbsp;&nbsp;
+            <Button
+              onClick={() =>
+                setAndOpenRecord({ name: "", content: "", ttl: 300, type: "A" })
+              }
+              primary
+            >
+              Add
+            </Button>
           </div>
         </div>
       </div>
