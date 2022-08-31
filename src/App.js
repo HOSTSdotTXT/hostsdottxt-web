@@ -12,38 +12,45 @@ import { useAuth } from "./hooks/useAuth";
 function ButtonRow() {
   let auth = useAuth();
 
-    return <div style={{ display: "flex" }}>
-      { auth.isAuthenticated() ? <><Button
-        className="LoginButton"
-        primary
-        onClick={() => (document.location = "/zones")}
-      >
-        Zones
-      </Button>
-      <Button
-        className="LoginButton"
-        secondary
-        onClick={() => auth.signout(() => {})}
-      >
-        Log Out
-      </Button>
-   </> : <>
-      <Button
-        className="LoginButton"
-        primary
-        onClick={() => (document.location = "/login")}
-      >
-        Login
-      </Button>
-      <Button
-        className="LoginButton"
-        secondary
-        onClick={() => (document.location = "/signup")}
-      >
-        Sign Up
-      </Button>
-      </>}
-    </div>;
+  return (
+    <div style={{ display: "flex" }}>
+      {auth.isAuthenticated() ? (
+        <>
+          <Button
+            className="LoginButton"
+            primary
+            onClick={() => (document.location = "/zones")}
+          >
+            Zones
+          </Button>
+          <Button
+            className="LoginButton"
+            secondary
+            onClick={() => auth.signout(() => {})}
+          >
+            Log Out
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button
+            className="LoginButton"
+            primary
+            onClick={() => (document.location = "/login")}
+          >
+            Login
+          </Button>
+          <Button
+            className="LoginButton"
+            secondary
+            onClick={() => (document.location = "/signup")}
+          >
+            Sign Up
+          </Button>
+        </>
+      )}
+    </div>
+  );
 }
 function App() {
   return (

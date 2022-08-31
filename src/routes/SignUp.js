@@ -8,14 +8,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useFeatures } from "../hooks/useFeatures.js";
 import { Link } from "react-router-dom";
 
-
-const Flex = styled("div", {
+export const Flex = styled("div", {
   display: "flex",
   alignItems: "flex-start",
   justifyContent: "center",
 });
 
-const LoginCard = styled("div", {
+export const LoginCard = styled("div", {
   boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
   borderRadius: "12px",
   padding: "1em",
@@ -25,27 +24,27 @@ const LoginCard = styled("div", {
   width: "360px",
 });
 
-const Title = styled("h1", {
+export const Title = styled("h1", {
   textAlign: "center",
   fontSize: "3em",
   margin: "1rem 0",
   fontWeight: "300",
 });
 
-const Subtitle = styled("h1", {
+export const Subtitle = styled("h1", {
   textAlign: "center",
   fontSize: "2.5em",
   margin: "1rem 0",
   fontWeight: 300,
 });
 
-const StyledLabel = styled("label", {
+export const StyledLabel = styled("label", {
   display: "block",
   paddingBottom: "0.25em",
   fontSize: "0.9em",
 });
 
-const AlignRight = styled("div", {
+export const AlignRight = styled("div", {
   display: "flex",
   alignItems: "right",
   justifyContent: "right",
