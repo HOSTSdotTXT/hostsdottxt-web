@@ -11,17 +11,15 @@ import { Link } from "react-router-dom";
 
 const Flex = styled("div", {
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "center",
-  minHeight: "100vh",
-  // If ever we decide to move the title out of the login card itself
-  flexDirection: "column",
 });
 
 const LoginCard = styled("div", {
   boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
   borderRadius: "12px",
   padding: "1em",
+  marginTop: "20vh",
   border: "1px solid #D4D4D8",
   backgroundColor: "#F4F4F5",
   width: "360px",

@@ -1,10 +1,10 @@
 .App {
   text-align: center;
-  margin: 32px;
 }
 
 .App > header {
   margin: 0px 64px;
+  padding: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
