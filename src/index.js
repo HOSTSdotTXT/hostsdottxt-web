@@ -1,5 +1,6 @@
 import App from './App'
 import { AuthProvider } from './hooks/useAuth'
+import { ErrorModalProvider } from './hooks/useErrorModal'
 import { FeaturesProvider } from './hooks/useFeatures'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
@@ -12,7 +13,9 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <FeaturesProvider>
-        <App />
+        <ErrorModalProvider>
+          <App />
+        </ErrorModalProvider>
       </FeaturesProvider>
     </AuthProvider>
   </React.StrictMode>

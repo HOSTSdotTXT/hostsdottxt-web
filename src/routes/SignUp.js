@@ -1,4 +1,5 @@
 import { useAuth } from '../hooks/useAuth.js'
+import { useErrorModal } from '../hooks/useErrorModal.js'
 import { useFeatures } from '../hooks/useFeatures.js'
 import Button from '../uikit/Button.js'
 import Input from '../uikit/Input.js'
@@ -56,6 +57,7 @@ export function SignUp() {
   const auth = useAuth()
   const features = useFeatures()
   const navigate = useNavigate()
+  const errorModal = useErrorModal()
   let location = useLocation()
 
   let from = location.state?.from?.pathname || '/zones'
@@ -119,7 +121,14 @@ export function SignUp() {
           })
         })
       } else {
-        alert('Something went wrong!')
+        res
+          .json()
+          .then((data) => {
+            errorModal.show(data.error)
+          })
+          .catch((err) => {
+            errorModal.show('Something went wrong :(')
+          })
       }
     })
   }

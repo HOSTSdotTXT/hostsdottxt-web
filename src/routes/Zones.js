@@ -1,4 +1,5 @@
 import { RequireAuth, useAuth } from '../hooks/useAuth'
+import { useErrorModal } from '../hooks/useErrorModal'
 import useFetch from '../hooks/useFetch'
 import { styled } from '@stitches/react'
 import { Link } from 'react-router-dom'
@@ -28,7 +29,7 @@ const LinkStyled = styled(Link, {
 
 export default function Zones() {
   const auth = useAuth()
-
+  const errorModal = useErrorModal()
   let { data, loading, error } = useFetch('/api/v1/zones', {
     headers: {
       Authorization: auth.token,
@@ -48,7 +49,7 @@ export default function Zones() {
     )
   }
   if (error) {
-    alert(error)
+    errorModal.show(error)
   }
 
   return (

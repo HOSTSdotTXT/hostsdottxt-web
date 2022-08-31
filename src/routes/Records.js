@@ -2,6 +2,7 @@
 import RecordModal from '../components/RecordModal'
 import RecordTable from '../components/RecordTable'
 import { RequireAuth, useAuth } from '../hooks/useAuth'
+import { useErrorModal } from '../hooks/useErrorModal'
 import './Records.css'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
@@ -15,6 +16,7 @@ export function Records() {
   const [updateSignal, setUpdateSignal] = React.useState(0)
 
   const auth = useAuth()
+  const errorModal = useErrorModal()
 
   function setAndOpenRecord(record) {
     setOpenRecord(record)
@@ -41,7 +43,14 @@ export function Records() {
       }).then((res) => {
         if (res.status === 200) {
         } else {
-          alert('Error updating record')
+          res
+            .json()
+            .then((data) => {
+              errorModal.show(data.error)
+            })
+            .catch((err) => {
+              errorModal.show('Unknown error updating record')
+            })
         }
       })
     }
@@ -60,7 +69,14 @@ export function Records() {
           setOpenRecord({})
           setOriginalRecord({})
         } else {
-          alert('Error updating record')
+          res
+            .json()
+            .then((data) => {
+              errorModal.show(data.error)
+            })
+            .catch((err) => {
+              errorModal.show('Unknown error updating record')
+            })
         }
       })
     } else {
@@ -78,7 +94,14 @@ export function Records() {
           setOpenRecord({})
           setOriginalRecord({})
         } else {
-          alert('Error creating record')
+          res
+            .json()
+            .then((data) => {
+              errorModal.show(data.error)
+            })
+            .catch((err) => {
+              errorModal.show('Unknown error creating record')
+            })
         }
       })
     }
@@ -95,7 +118,14 @@ export function Records() {
       if (res.status === 200) {
         setUpdateSignal(updateSignal + 1)
       } else {
-        alert('Error deleting record')
+        res
+          .json()
+          .then((data) => {
+            errorModal.show(data.error)
+          })
+          .catch((err) => {
+            errorModal.show('Unknown error deleting record')
+          })
       }
     })
   }
@@ -112,7 +142,14 @@ export function Records() {
           setZone(data)
         })
       } else {
-        alert('Error loading zones')
+        res
+          .json()
+          .then((data) => {
+            errorModal.show(data.error)
+          })
+          .catch((err) => {
+            errorModal.show('Unknown error loading zone')
+          })
       }
     })
   }, [zoneName, auth.token, updateSignal])

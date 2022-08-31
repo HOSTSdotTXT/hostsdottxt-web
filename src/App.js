@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function ButtonRow() {
   let auth = useAuth()
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   return (
     <div style={{ display: 'flex' }}>
@@ -20,7 +20,7 @@ function ButtonRow() {
           <Button
             className="LoginButton"
             primary
-            onClick={() => (navigate('/zones'))}
+            onClick={() => navigate('/zones')}
           >
             Zones
           </Button>
@@ -37,14 +37,14 @@ function ButtonRow() {
           <Button
             className="LoginButton"
             primary
-            onClick={() => (navigate('/login'))}
+            onClick={() => navigate('/login')}
           >
             Login
           </Button>
           <Button
             className="LoginButton"
             secondary
-            onClick={() => (navigate('/signup'))}
+            onClick={() => navigate('/signup')}
           >
             Sign Up
           </Button>
@@ -60,7 +60,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <header>
-          <Link to={auth.isAuthenticated() ? "/zones" : "/"}>
+          <Link to={auth.isAuthenticated() ? '/zones' : '/'}>
             <h1>
               HOSTS<b>dot</b>TXT
             </h1>

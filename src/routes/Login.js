@@ -1,4 +1,5 @@
 import { useAuth } from '../hooks/useAuth'
+import { useErrorModal } from '../hooks/useErrorModal'
 import { useFeatures } from '../hooks/useFeatures'
 import Button from '../uikit/Button.js'
 import Input from '../uikit/Input.js'
@@ -15,6 +16,7 @@ function Login(props) {
   let location = useLocation()
   let features = useFeatures()
   const [totpRequired, setTotpRequired] = useState(false)
+  const errorModal = useErrorModal()
 
   let from = location.state?.from?.pathname || '/zones'
 
@@ -42,7 +44,7 @@ function Login(props) {
           })
         })
       } else {
-        alert('Invalid email or password')
+        errorModal.show('Invalid email or password')
       }
     })
   }
