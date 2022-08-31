@@ -7,7 +7,6 @@ import { useAuth } from "../hooks/useAuth.js";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useFeatures } from "../hooks/useFeatures.js";
 import { Link } from "react-router-dom";
-import { isExpired } from "react-jwt";
 
 const Flex = styled("div", {
   display: "flex",
@@ -59,6 +58,15 @@ export function SignUp() {
   const auth = useAuth();
   const features = useFeatures();
   const navigate = useNavigate();
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/zones";
+
+  useEffect(() => {
+    if (auth.isAuthenticated()) {
+      navigate(from, { replace: true });
+    }
+  }, [auth.token, from, navigate]);
 
   const checkPasswordsMatch = debounce((e) => {
     const password = document.getElementById("password").value;
@@ -118,20 +126,9 @@ export function SignUp() {
     });
   };
 
-  let location = useLocation();
-
-  let from = location.state?.from?.pathname || "/zones";
-
-  useEffect(() => {
-    if (auth.token && !isExpired(auth.token)) {
-      navigate(from, { replace: true });
-    }
-  }, [auth.token, from, navigate]);
-
   if (!features.signup) {
     return (
       <Flex>
-        <Title>HOSTSdotTXT</Title>
         <LoginCard>
           <Subtitle>Sign Up</Subtitle>
           <center>

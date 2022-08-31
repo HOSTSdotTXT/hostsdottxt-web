@@ -11,9 +11,6 @@ export default function Home() {
 
   return (
     <div>
-      <Button primary onClick={() => (document.location = "/zones")}>
-        Zones
-      </Button>
       <div>
         {metrics != null && (
           <p>

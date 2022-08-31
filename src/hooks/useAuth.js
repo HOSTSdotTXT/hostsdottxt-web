@@ -19,7 +19,11 @@ export function AuthProvider({ children }) {
     callback();
   };
 
-  let value = { token, signin, signout };
+  let isAuthenticated = () => {
+    return token != null && !isExpired(token);
+  };
+
+  let value = { token, signin, signout, isAuthenticated };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

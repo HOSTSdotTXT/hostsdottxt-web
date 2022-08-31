@@ -5,7 +5,6 @@ import Button from "../uikit/Button.js";
 import Input from "../uikit/Input.js";
 import { useAuth } from "../hooks/useAuth";
 import { useFeatures } from "../hooks/useFeatures";
-import { isExpired } from "react-jwt";
 import { styled } from "@stitches/react";
 import { debounce } from "lodash";
 import { Link } from "react-router-dom";
@@ -64,10 +63,10 @@ function Login(props) {
   let from = location.state?.from?.pathname || "/zones";
 
   useEffect(() => {
-    if (auth.token && !isExpired(auth.token)) {
+    if (auth.isAuthenticated()) {
       navigate(from, { replace: true });
     }
-  }, [auth.token, from, navigate]);
+  }, [auth, from, navigate]);
 
   const handleSubmit = () => {
     fetch("/api/v1/users/login", {
@@ -115,7 +114,6 @@ function Login(props) {
 
   return (
     <Flex>
-      <Title>HOSTSdotTXT</Title>
       <LoginCard>
         <Subtitle>Log In</Subtitle>
         <StyledLabel htmlFor="email">Email</StyledLabel>
