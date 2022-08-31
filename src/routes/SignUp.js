@@ -2,10 +2,12 @@ import { styled } from "@stitches/react";
 import Button from "../uikit/Button.js";
 import Input from "../uikit/Input.js";
 import { debounce } from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useFeatures } from "../hooks/useFeatures.js";
+import { Link } from "react-router-dom";
+import { isExpired } from "react-jwt";
 
 const Flex = styled("div", {
   display: "flex",
@@ -116,6 +118,16 @@ export function SignUp() {
     });
   };
 
+  let location = useLocation();
+
+  let from = location.state?.from?.pathname || "/zones";
+
+  useEffect(() => {
+    if (auth.token && !isExpired(auth.token)) {
+      navigate(from, { replace: true });
+    }
+  }, [auth.token, from, navigate]);
+
   if (!features.signup) {
     return (
       <Flex>
@@ -124,6 +136,9 @@ export function SignUp() {
           <Subtitle>Sign Up</Subtitle>
           <center>
             <p>Sorry, but sign-ups are currently disabled.</p>
+            <p>
+              If you have an account, you can <Link to="/login">sign in.</Link>
+            </p>
           </center>
         </LoginCard>
       </Flex>
@@ -167,6 +182,11 @@ export function SignUp() {
             Sign Up {"\u2794"}
           </Button>
         </AlignRight>
+        <center>
+          <p>
+            If you have an account, you can <Link to="/login">sign in.</Link>
+          </p>
+        </center>
       </LoginCard>
     </Flex>
   );

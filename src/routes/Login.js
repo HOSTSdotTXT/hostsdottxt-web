@@ -8,6 +8,7 @@ import { useFeatures } from "../hooks/useFeatures";
 import { isExpired } from "react-jwt";
 import { styled } from "@stitches/react";
 import { debounce } from "lodash";
+import { Link } from "react-router-dom";
 
 const Flex = styled("div", {
   display: "flex",
@@ -137,6 +138,9 @@ function Login(props) {
             Log In {"\u2794"}
           </Button>
         </AlignRight>
+        <center>
+          {features.signup && (<p>Don't have an account? <Link to="/signup">Sign up!</Link></p>)}
+        </center>
       </LoginCard>
     </Flex>
   );
