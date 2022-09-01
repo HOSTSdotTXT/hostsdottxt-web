@@ -1,3 +1,4 @@
+import { forHumans } from '../utils'
 import IconButton from './IconButton.js'
 import React from 'react'
 
@@ -10,7 +11,7 @@ export default function Record(props) {
         {props.value}
         {props.recordSpecial}
       </div>
-      <div className="records-td records-col-ttl">{props.ttl}</div>
+      <div className="records-td records-col-ttl">{forHumans(props.ttl)}</div>
       <div className="records-td records-col-actions">
         <IconButton icon="pencil" action={() => props.setAndOpenRecord()}>
           (edit)

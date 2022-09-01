@@ -74,21 +74,29 @@ export default function RecordsTable({
       </div>
       <div className="records-tbody" role="rowgroup">
         {records != null &&
-          sort(sort(records.filter(r => r.type != 'NS'), sortDirections.UP, true, sortColumns.NAME), sortDirections.UP, true, sortColumns.TYPE).map(
-            (val) => {
-              return (
-                <Record
-                  id={val.id}
-                  type={val.type}
-                  name={val.name}
-                  value={val.content}
-                  ttl={val.ttl}
-                  setAndOpenRecord={() => setAndOpenRecord(val)}
-                  deleteRecord={() => deleteRecord(val.id)}
-                ></Record>
-              )
-            }
-          )}
+          sort(
+            sort(
+              records.filter((r) => r.type != 'NS'),
+              sortDirections.UP,
+              true,
+              sortColumns.NAME
+            ),
+            sortDirections.UP,
+            true,
+            sortColumns.TYPE
+          ).map((val) => {
+            return (
+              <Record
+                id={val.id}
+                type={val.type}
+                name={val.name}
+                value={val.content}
+                ttl={val.ttl}
+                setAndOpenRecord={() => setAndOpenRecord(val)}
+                deleteRecord={() => deleteRecord(val.id)}
+              ></Record>
+            )
+          })}
       </div>
     </div>
   )
