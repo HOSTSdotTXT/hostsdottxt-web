@@ -151,7 +151,6 @@ export function SignUp() {
 
   return (
     <Flex>
-      <Title>HOSTSdotTXT</Title>
       <LoginCard>
         <Subtitle>Sign Up</Subtitle>
         <StyledLabel for="email">
