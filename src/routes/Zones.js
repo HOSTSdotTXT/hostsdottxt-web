@@ -104,7 +104,7 @@ function CreateZoneModal({ showZoneCreateModal, setShowZoneCreateModal }) {
     }).then((res) => {
       if (res.status === 200) {
         setShowZoneCreateModal(false)
-        navigate(`/zones/${zoneName}`)
+        navigate(`/zones/${zoneName}` + (zoneName.endsWith('.') ? '' : '.'))
       } else {
         res
           .json()
