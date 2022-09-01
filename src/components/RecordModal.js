@@ -1,3 +1,4 @@
+import { AlignRight } from '../routes/SignUp'
 import Button from '../uikit/Button'
 import Input, { StyledSelect } from '../uikit/Input'
 import Modal from 'react-modal'
@@ -26,8 +27,8 @@ export default function RecordModal(props) {
         <thead>
           <tr>
             <th style={{ width: '6em' }}>Type</th>
-            <th style={{ width: '24em' }}>Name</th>
-            <th style={{ width: '8em' }}>Content</th>
+            <th style={{ width: '18em' }}>Name</th>
+            <th style={{ width: '24em' }}>Content</th>
             <th style={{ width: '6em' }}>TTL</th>
           </tr>
         </thead>
@@ -90,14 +91,14 @@ export default function RecordModal(props) {
           </tr>
         </tbody>
       </table>
-      <div style={{ display: 'flex' }}>
+      <AlignRight>
         <Button secondary onClick={() => setShowModal(false)}>
           Cancel
         </Button>
         <Button primary onClick={() => saveRecord()}>
           Save
         </Button>
-      </div>
+      </AlignRight>
     </Modal>
   )
 }
