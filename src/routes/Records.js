@@ -157,7 +157,9 @@ export function Records() {
   return (
     <RequireAuth>
       <main className="records-table-container">
-        <h1>DNS Records for {zoneName}</h1>
+        <h1>
+          DNS Records for <b>{zoneName}</b>
+        </h1>
         {zone && (
           <RecordTable
             records={zone}
