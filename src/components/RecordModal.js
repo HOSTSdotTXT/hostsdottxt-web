@@ -29,7 +29,7 @@ export default function RecordModal(props) {
             <th style={{ width: '6em' }}>Type</th>
             <th style={{ width: '18em' }}>Name</th>
             <th style={{ width: '24em' }}>Content</th>
-            <th style={{ width: '6em' }}>TTL</th>
+            <th style={{ width: '9em' }}>TTL</th>
           </tr>
         </thead>
         <tbody>
@@ -76,17 +76,27 @@ export default function RecordModal(props) {
               ></Input>
             </td>
             <td>
-              <Input
-                rows={1}
+              <StyledSelect
                 onChange={(e) =>
                   setOpenRecord({
                     ...openRecord,
                     ttl: parseInt(e.target.value),
                   })
                 }
-                type="number"
                 defaultValue={openRecord.ttl}
-              ></Input>
+              >
+                <option value="60">1 minute</option>
+                <option value="300">5 minutes</option>
+                <option value="600">10 minutes</option>
+                <option value="1800">30 minutes</option>
+                <option value="3600">1 hour</option>
+                <option value="10800">3 hours</option>
+                <option value="21600">6 hours</option>
+                <option value="43200">12 hours</option>
+                <option value="86400">1 day</option>
+                <option value="172800">2 days</option>
+                <option value="604800">1 week</option>
+              </StyledSelect>
             </td>
           </tr>
         </tbody>
