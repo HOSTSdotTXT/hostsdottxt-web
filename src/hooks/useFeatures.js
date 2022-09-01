@@ -1,10 +1,9 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 const FeaturesContext = React.createContext()
 
 export function FeaturesProvider({ children }) {
-  const [features, setFeatures] = React.useState([])
+  const [features, setFeatures] = React.useState(null)
 
   useEffect(() => {
     fetch('/api/v1/features')

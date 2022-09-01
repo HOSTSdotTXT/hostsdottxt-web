@@ -134,7 +134,7 @@ export function SignUp() {
     })
   }
 
-  if (!features.signup) {
+  if (!features || !features.signup) {
     return (
       <Flex>
         <LoginCard>

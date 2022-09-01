@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.18.2
   '@babel/plugin-syntax-flow': ^7.17.12
   '@babel/plugin-transform-react-jsx': ^7.17.12
+  '@react-spring/web': ^9.5.2
   '@stitches/react': ^1.2.8
   '@testing-library/dom': ^8.13.0
   '@testing-library/jest-dom': ^5.16.4
@@ -17,6 +18,7 @@ specifiers:
   react: ^18.1.0
   react-dom: ^18.1.0
   react-jwt: ^1.1.6
+  react-loading-icons: ^1.1.0
   react-modal: ^3.15.1
   react-router-dom: ^6.3.0
   react-scripts: 5.0.1
@@ -27,6 +29,7 @@ dependencies:
   '@babel/core': 7.18.2
   '@babel/plugin-syntax-flow': 7.17.12_@babel+core@7.18.2
   '@babel/plugin-transform-react-jsx': 7.17.12_@babel+core@7.18.2
+  '@react-spring/web': 9.5.2_ef5jwxihqo6n7gxfmzogljlgcm
   '@stitches/react': 1.2.8_react@18.1.0
   '@testing-library/dom': 8.13.0
   '@testing-library/jest-dom': 5.16.4
@@ -38,6 +41,7 @@ dependencies:
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
   react-jwt: 1.1.6_react@18.1.0
+  react-loading-icons: 1.1.0
   react-modal: 3.15.1_ef5jwxihqo6n7gxfmzogljlgcm
   react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
   react-scripts: 5.0.1_kyabxajlhps7o43dn7edo3gzxi
@@ -1991,6 +1995,60 @@ packages:
       source-map: 0.7.3
       webpack: 5.72.1
       webpack-dev-server: 4.9.0_webpack@5.72.1
+    dev: false
+
+  /@react-spring/animated/9.5.2_react@18.1.0:
+    resolution: {integrity: sha512-oRlX+MmYLbK8IuUZR7SQUnRjXxJ4PMIZeBkBd1SUWVgVJAHMTfJzPltzm+I6p59qX+qLlklYHfnWaonQKDqLuQ==}
+    peerDependencies:
+      react: ^16.8.0  || >=17.0.0 || >=18.0.0
+    dependencies:
+      '@react-spring/shared': 9.5.2_react@18.1.0
+      '@react-spring/types': 9.5.2
+      react: 18.1.0
+    dev: false
+
+  /@react-spring/core/9.5.2_react@18.1.0:
+    resolution: {integrity: sha512-UMRtFH6EfebMp/NMDGCUY5+hZFXsg9iT9hzt/iPzJSz2WMXKBjLoFZHJXcmiVOrIhzHmg1O0pFECn1Wp6pZ5Gw==}
+    peerDependencies:
+      react: ^16.8.0  || >=17.0.0 || >=18.0.0
+    dependencies:
+      '@react-spring/animated': 9.5.2_react@18.1.0
+      '@react-spring/rafz': 9.5.2
+      '@react-spring/shared': 9.5.2_react@18.1.0
+      '@react-spring/types': 9.5.2
+      react: 18.1.0
+    dev: false
+
+  /@react-spring/rafz/9.5.2:
+    resolution: {integrity: sha512-xHSRXKKBI/wDUkZGrspkOm4VlgN6lZi8Tw9Jzibp9QKf3neoof+U2mDNgklvnLaasymtUwAq9o4ZfFvQIVNgPQ==}
+    dev: false
+
+  /@react-spring/shared/9.5.2_react@18.1.0:
+    resolution: {integrity: sha512-/OSf2sjwY4BUnjZL6xMC+H3WxOOhMUCk+yZwgdj40XuyUpk6E6tYyiPeD9Yq5GLsZHodkvE1syVMRVReL4ndAg==}
+    peerDependencies:
+      react: ^16.8.0  || >=17.0.0 || >=18.0.0
+    dependencies:
+      '@react-spring/rafz': 9.5.2
+      '@react-spring/types': 9.5.2
+      react: 18.1.0
+    dev: false
+
+  /@react-spring/types/9.5.2:
+    resolution: {integrity: sha512-n/wBRSHPqTmEd4BFWY6TeR1o/UY+3ujoqMxLjqy90CcY/ozJzDRuREL3c+pxMeTF2+B7dX33dTPCtFMX51nbxg==}
+    dev: false
+
+  /@react-spring/web/9.5.2_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-cusTjbOGTgtbsnpBDjb6Ia+B0lQLE0Fk5rGDog6Sww7hWnLIQ521PMiOBnAWtkntB9eXDUfj7L91nwJviEC0lw==}
+    peerDependencies:
+      react: ^16.8.0  || >=17.0.0 || >=18.0.0
+      react-dom: ^16.8.0  || >=17.0.0 || >=18.0.0
+    dependencies:
+      '@react-spring/animated': 9.5.2_react@18.1.0
+      '@react-spring/core': 9.5.2_react@18.1.0
+      '@react-spring/shared': 9.5.2_react@18.1.0
+      '@react-spring/types': 9.5.2
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
     dev: false
 
   /@rollup/plugin-babel/5.3.1_qhxjqw33rawdn3amxsgyn5mkfy:
@@ -8119,6 +8177,11 @@ packages:
 
   /react-lifecycles-compat/3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+    dev: false
+
+  /react-loading-icons/1.1.0:
+    resolution: {integrity: sha512-Y9eZ6HAufmUd8DIQd6rFrx5Bt/oDlTM9Nsjvf8YpajTa3dI8cLNU8jUN5z7KTANU+Yd6/KJuBjxVlrU2dMw33g==}
+    engines: {node: '>= 12.0.0'}
     dev: false
 
   /react-modal/3.15.1_ef5jwxihqo6n7gxfmzogljlgcm:
