@@ -19,10 +19,11 @@ export const LoginCard = styled('div', {
   boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
   borderRadius: '12px',
   padding: '1em',
-  marginTop: '20vh',
+  marginTop: '10vh',
   border: '1px solid #D4D4D8',
   backgroundColor: '#F4F4F5',
   width: '360px',
+  textAlign: 'left',
 })
 
 export const Title = styled('h1', {
@@ -180,8 +181,11 @@ export function SignUp() {
           type="password"
         ></Input>
         <AlignRight>
-          {/* <Button secondary>Cancel</Button> */}
-          <Button onClick={handleSubmit} primary>
+          <Button
+            style={{ width: '100%', marginTop: '16px' }}
+            onClick={handleSubmit}
+            primary
+          >
             Sign Up {'\u2794'}
           </Button>
         </AlignRight>

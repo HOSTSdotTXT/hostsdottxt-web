@@ -90,7 +90,11 @@ function Login(props) {
         )}
         <AlignRight>
           {/* <Button secondary>Cancel</Button> */}
-          <Button onClick={handleSubmit} primary>
+          <Button
+            style={{ width: '100%', marginTop: '16px' }}
+            onClick={handleSubmit}
+            primary
+          >
             Log In {'\u2794'}
           </Button>
         </AlignRight>

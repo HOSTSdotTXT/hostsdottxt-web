@@ -6,9 +6,9 @@ import Records from './routes/Records'
 import SignUp from './routes/SignUp.js'
 import Zones from './routes/Zones'
 import Button from './uikit/Button'
+import { styled } from '@stitches/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Link, useNavigate } from 'react-router-dom'
-import { styled } from '@stitches/react'
 
 const MessageBar = styled('div', {
   display: 'flex',
@@ -17,9 +17,10 @@ const MessageBar = styled('div', {
   padding: '0px',
   fontSize: '1.5em',
   fontWeight: 'bold',
-  background: 'repeating-linear-gradient(-45deg, #ffff00, #ffff00 20px, #000000 20px, #000000 40px)',
+  background:
+    'repeating-linear-gradient(-45deg, #ffff00, #ffff00 20px, #000000 20px, #000000 40px)',
   width: '100%',
-});
+})
 const MessageBox = styled('div', {
   fontSize: '1.5em',
   padding: '0px 2em',
@@ -76,11 +77,12 @@ function App() {
 
   return (
     <div className="App">
-    <MessageBar>
-      <MessageBox>
-        This software is in public alpha. Please don't use it for anything critical
-      </MessageBox>
-    </MessageBar>
+      <MessageBar>
+        <MessageBox>
+          This software is in public alpha. Please don't use it for anything
+          critical
+        </MessageBox>
+      </MessageBar>
       <BrowserRouter>
         <header>
           <Link to={auth.isAuthenticated() ? '/zones' : '/'}>
