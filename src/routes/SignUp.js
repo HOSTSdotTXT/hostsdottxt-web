@@ -111,9 +111,7 @@ export function SignUp() {
       body: JSON.stringify({
         email: document.getElementById('email').value.trim(),
         password: document.getElementById('password').value.trim(),
-        display_name:
-          document.getElementById('displayName').value.trim() ?? null,
-      }),
+      })
     }).then((res) => {
       if (res.status === 200) {
         res.json().then((data) => {
@@ -161,8 +159,6 @@ export function SignUp() {
           )}
         </StyledLabel>
         <Input id="email" onChange={checkEmailValid} type="email"></Input>
-        <StyledLabel for="displayName">Display Name</StyledLabel>
-        <Input id="displayName"></Input>
         <StyledLabel for="password">Password</StyledLabel>
         <Input
           id="password"
@@ -199,4 +195,4 @@ export function SignUp() {
   )
 }
 
-export default SignUp
+export default SignUp;

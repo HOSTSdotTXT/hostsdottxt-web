@@ -162,6 +162,7 @@ export function Records() {
         </h1>
         {zone && (
           <RecordTable
+            zoneName={zoneName}
             records={zone}
             setAndOpenRecord={setAndOpenRecord}
             deleteRecord={deleteRecord}

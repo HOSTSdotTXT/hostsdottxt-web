@@ -38,6 +38,7 @@ function sort(records, direction, smart, column) {
 }
 
 export default function RecordsTable({
+  zoneName,
   records,
   setAndOpenRecord,
   deleteRecord,
@@ -59,7 +60,7 @@ export default function RecordsTable({
             <Button
               onClick={() =>
                 setAndOpenRecord({
-                  name: '',
+                  name: zoneName,
                   content: '',
                   ttl: 300,
                   type: 'A',

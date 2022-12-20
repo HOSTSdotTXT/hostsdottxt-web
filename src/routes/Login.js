@@ -50,7 +50,7 @@ function Login(props) {
   }
 
   const checkTotpRequired = debounce((e) => {
-    if (!features.totp) {
+    if (!features || !features.totp) {
       return
     }
     fetch('/api/v1/users/totp?email=' + e.target.value).then((res) => {
@@ -78,7 +78,7 @@ function Login(props) {
         <Input id="email" type="email" onChange={checkTotpRequired}></Input>
         <StyledLabel htmlFor="password">Password</StyledLabel>
         <Input id="password" type="password" onKeyUp={onKeyPress}></Input>
-        {features.totp && (
+        {features && features.totp && (
           <>
             <StyledLabel htmlFor="totp">TOTP Code</StyledLabel>
             <Input
@@ -99,7 +99,7 @@ function Login(props) {
           </Button>
         </AlignRight>
         <center>
-          {features.signup && (
+          {(!features || features.signup) && (
             <p>
               Don't have an account? <Link to="/signup">Sign up!</Link>
             </p>
