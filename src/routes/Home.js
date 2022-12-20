@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        {metrics != null && (
+        {metrics && metrics.count && (
           <p>
             Served {metrics.count} queries in the last 24 hours! 99% of those
             queries were served in under {(metrics.p99 / 1000).toPrecision(2)}ms
