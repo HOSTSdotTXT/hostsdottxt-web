@@ -46,7 +46,7 @@ function ButtonRow() {
       {auth.isAuthenticated() ? (
         <>
           {/* TODO: This should go to a profile page once one exists */}
-          <DnBox onClick={() => navigate('/zones')}>{auth.getDn()}</DnBox>
+          <DnBox>{auth.getDn()}</DnBox>
           <Button
             className="LoginButton"
             primary
