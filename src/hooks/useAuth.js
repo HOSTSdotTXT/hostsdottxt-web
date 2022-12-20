@@ -1,5 +1,5 @@
 import React from 'react'
-import { isExpired } from 'react-jwt'
+import { isExpired, decodeToken } from 'react-jwt'
 import { Navigate, useLocation } from 'react-router-dom'
 
 let AuthContext = React.createContext()
@@ -23,7 +23,14 @@ export function AuthProvider({ children }) {
     return token != null && !isExpired(token)
   }
 
-  let value = { token, signin, signout, isAuthenticated }
+  let getDn = () => {
+    if (isAuthenticated()) {
+      return decodeToken(token)["dn"]
+    }
+    return ""
+  }
+
+  let value = { token, signin, signout, isAuthenticated, getDn }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

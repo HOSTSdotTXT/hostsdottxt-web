@@ -31,6 +31,11 @@ const MessageBox = styled('div', {
   fontWeight: 'bold',
   backgroundColor: '#ffff00',
 })
+const DnBox = styled('div', {
+  color: '#424242',
+  fontSize: '1.1em',
+  padding: '0.6em 0.75em',
+})
 
 function ButtonRow() {
   let auth = useAuth()
@@ -40,6 +45,8 @@ function ButtonRow() {
     <div style={{ display: 'flex' }}>
       {auth.isAuthenticated() ? (
         <>
+          {/* TODO: This should go to a profile page once one exists */}
+          <DnBox onClick={() => navigate('/zones')}>{auth.getDn()}</DnBox>
           <Button
             className="LoginButton"
             primary
